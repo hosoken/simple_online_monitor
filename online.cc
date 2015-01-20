@@ -63,8 +63,8 @@ void decode(){
 
 void* process(void*){
   while(1){
-    usleep(10000);
-    gSystem->ProcessEvents();
+    usleep(1000);
+    decode();
   }
   return 0;
 }
@@ -85,16 +85,10 @@ int main(int argc,char **argv)
   defineMacros(macro_list);
   browser.Add(macro_list);
   
-
   TThread *t1 = new TThread("t1",process);
   t1->Run();
-
  
-  while(1){
-    usleep(1000);
-    decode();
-  }
-
+  theApp.Run();
   
   return 0;
 }

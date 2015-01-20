@@ -1,6 +1,6 @@
 ### ROOT
 RTINCLUDE = $(shell root-config --cflags)
-RTLIBS    = $(shell root-config --new --glibs)
+RTLIBS    = $(shell root-config --glibs)
 
 ### Flags
 CXX     = g++
