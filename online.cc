@@ -27,19 +27,24 @@ void defineMacros(TList *list){
   TMacro* m=0;
 
   m = new TMacro;
-  m->AddLine("{gPad->GetCanvas()->Clear();"
-	     "gPad->GetCanvas()->Update();}");
+  m->AddLine("{");
+  m->AddLine("gROOT->ProcessLine(\".x Macros/ClearCanvas.C\");");
+  m->AddLine("}");
   m->SetName("Clear Canvas");
   list->Add(m);
   
   m = new TMacro;
-  m->ReadFile("./Macros/UpdateCanvas.C");
+  m->AddLine("{");
+  m->AddLine("gROOT->ProcessLine(\".x Macros/UpdateCanvas.C\");");
+  m->AddLine("}");
   m->SetName("Update Canvas");
   list->Add(m);
   
   m = new TMacro;
-  m->ReadFile("./Macros/ResetAll.C");
-  m->ReadFile("./Macros/UpdateCanvas.C");
+  m->AddLine("{");
+  m->AddLine("gROOT->ProcessLine(\".x Macros/ResetAll.C\");");
+  m->AddLine("gROOT->ProcessLine(\".x Macros/UpdateCanvas.C\");");
+  m->AddLine("}");
   m->SetName("Reset All");
   list->Add(m);
 
